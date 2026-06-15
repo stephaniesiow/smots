@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>
     tailwind.config = {
@@ -22,7 +22,7 @@
             charcoal:'#2C2C2C',
           },
           fontFamily: {
-            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            serif: ['Jost', 'sans-serif'],
             sans:  ['Jost', 'sans-serif'],
           },
         }
@@ -43,7 +43,7 @@
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <!-- fallback SVG shiba face shown only if logo.png is missing -->
         <div class="h-12 w-12 rounded-full bg-sand items-center justify-center text-2xl hidden">🐕</div>
-        <span class="font-serif text-xl tracking-wide text-bark">tinyclayshiba</span>
+        <span class="text-xl tracking-wide text-bark">tinyclayshiba</span>
       </a>
 
       <!-- Desktop Nav -->
@@ -76,34 +76,28 @@
   </header>
 
   <!-- ─── HERO ────────────────────────────────────────────────────────────── -->
-  <section class="relative overflow-hidden bg-sand">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 items-center min-h-[520px]">
-
-      <!-- Text -->
-      <div class="py-16 md:py-24 z-10">
-        <p class="text-xs tracking-[0.3em] uppercase text-moss mb-4 font-medium">Small-batch · Handmade · Singapore</p>
-        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-bark mb-6">
-          Handmade<br/>Shiba<br/>Ceramics
-        </h1>
-        <p class="text-stone text-lg font-light mb-10 tracking-wide">Cuteness for Your Home</p>
-        <a href="#gallery"
-           class="inline-block bg-moss text-cream text-xs tracking-[0.2em] uppercase font-medium px-8 py-4 hover:bg-bark transition-colors duration-300">
-          Shop Now
-        </a>
-      </div>
-
-      <!-- Hero image -->
-      <div class="hidden md:flex justify-end items-end h-full pt-8">
-        <div class="relative w-full max-w-sm h-[420px]">
-          <img src="assets/hero.jpg" alt="Tinyclayshiba handmade ceramics"
-               class="w-full h-full object-cover object-center"
-               onerror="this.parentElement.classList.add('hero-placeholder')" />
-        </div>
-      </div>
+  <section class="relative overflow-hidden min-h-[600px] md:min-h-[680px] flex items-center">
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/hero.jpg" alt=""
+           class="w-full h-full object-cover object-center"
+           onerror="this.parentElement.style.background='#E8DFD0'" />
+      <!-- Gradient overlay so text stays readable over any photo -->
+      <div class="absolute inset-0 bg-gradient-to-r from-sand/90 via-sand/60 to-transparent"></div>
     </div>
 
-    <!-- Decorative circle -->
-    <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-stone/20 pointer-events-none"></div>
+    <!-- Text (sits on top of image) -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+      <p class="text-xs tracking-[0.3em] uppercase text-moss mb-5 font-medium">Small-batch · Handmade · Singapore</p>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-bark mb-6">
+        Handmade<br/>Shiba<br/>Ceramics
+      </h1>
+      <p class="text-bark/60 text-lg font-light mb-10 tracking-wide">Cuteness for Your Home</p>
+      <a href="#gallery"
+         class="inline-block bg-moss text-cream text-xs tracking-[0.2em] uppercase font-medium px-8 py-4 hover:bg-bark transition-colors duration-300">
+        Shop Now
+      </a>
+    </div>
   </section>
 
   <!-- ─── CATEGORY CARDS ───────────────────────────────────────────────────── -->
@@ -160,7 +154,7 @@
     <!-- Section heading -->
     <div class="text-center mb-12">
       <p class="text-xs tracking-[0.3em] uppercase text-stone mb-3">Our Collection</p>
-      <h2 class="font-serif text-4xl font-light text-bark">Shop All</h2>
+      <h2 class="text-4xl font-light text-bark">Shop All</h2>
     </div>
 
     <!-- Filter tabs -->
@@ -196,7 +190,7 @@
       </div>
       <div>
         <p class="text-xs tracking-[0.3em] uppercase text-moss mb-4">The Story</p>
-        <h2 class="font-serif text-4xl font-light text-bark mb-6 leading-snug">
+        <h2 class="text-4xl font-light text-bark mb-6 leading-snug">
           Made with love,<br/>one shiba at a time.
         </h2>
         <p class="text-stone leading-relaxed mb-4 font-light">
@@ -207,17 +201,17 @@
         </p>
         <div class="mt-8 flex gap-6 text-center">
           <div>
-            <p class="font-serif text-3xl text-bark">100%</p>
+            <p class="text-3xl text-bark">100%</p>
             <p class="text-xs tracking-widest uppercase text-stone mt-1">Handmade</p>
           </div>
           <div class="border-l border-stone/30"></div>
           <div>
-            <p class="font-serif text-3xl text-bark">SG</p>
+            <p class="text-3xl text-bark">SG</p>
             <p class="text-xs tracking-widest uppercase text-stone mt-1">Based</p>
           </div>
           <div class="border-l border-stone/30"></div>
           <div>
-            <p class="font-serif text-3xl text-bark">∞</p>
+            <p class="text-3xl text-bark">∞</p>
             <p class="text-xs tracking-widest uppercase text-stone mt-1">Cuteness</p>
           </div>
         </div>
@@ -229,7 +223,7 @@
   <section class="max-w-6xl mx-auto px-6 py-20">
     <div class="text-center mb-10">
       <p class="text-xs tracking-[0.3em] uppercase text-stone mb-2">Follow Along</p>
-      <h2 class="font-serif text-3xl font-light text-bark">Instagram Feed</h2>
+      <h2 class="text-3xl font-light text-bark">Instagram Feed</h2>
       <a href="https://www.instagram.com/tinyclayshiba" target="_blank" rel="noopener"
          class="text-xs tracking-widest text-moss mt-1 inline-block hover:text-bark transition-colors">
         @tinyclayshiba
@@ -249,9 +243,10 @@
       <div>
         <div class="flex items-center gap-3 mb-4">
           <img src="assets/logo.png" alt="tinyclayshiba"
-               class="h-10 w-10 object-contain brightness-0 invert"
-               onerror="this.style.display='none'" />
-          <span class="font-serif text-lg tracking-wide">tinyclayshiba</span>
+               class="h-10 w-10 object-contain"
+               onerror="this.style.display='none'; document.getElementById('footerLogoFallback').style.display='flex';" />
+          <div id="footerLogoFallback" class="h-10 w-10 rounded-full bg-stone/20 items-center justify-center text-xl hidden">🐕</div>
+          <span class="text-lg tracking-wide">tinyclayshiba</span>
         </div>
         <p class="text-stone text-sm font-light leading-relaxed">
           Handmade shiba-themed ceramics, crafted with love in Singapore.
