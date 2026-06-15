@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tinyclayshiba — Handmade Shiba Ceramics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:   '#F5F0E8',
+            sand:    '#E8DFD0',
+            stone:   '#C4B8A4',
+            bark:    '#6B5B45',
+            moss:    '#5C6B4A',
+            charcoal:'#2C2C2C',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans:  ['Jost', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-cream text-charcoal font-sans">
+
+  <!-- ─── HEADER ─────────────────────────────────────────────────────────── -->
+  <header id="top" class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-sand">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#top" class="flex items-center gap-3 group">
+        <img src="assets/logo.png" alt="tinyclayshiba logo"
+             class="h-12 w-12 object-contain"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <!-- fallback SVG shiba face shown only if logo.png is missing -->
+        <div class="h-12 w-12 rounded-full bg-sand items-center justify-center text-2xl hidden">🐕</div>
+        <span class="font-serif text-xl tracking-wide text-bark">tinyclayshiba</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase font-sans font-medium">
+        <a href="#top"       class="nav-link active">Home</a>
+        <a href="#gallery"   class="nav-link">Shop All</a>
+        <a href="#pots"      class="nav-link">Shiba Pots</a>
+        <a href="#figurines" class="nav-link">Figurines</a>
+        <a href="#about"     class="nav-link">About</a>
+        <a href="#contact"   class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Open menu">
+        <span class="block w-6 h-px bg-charcoal transition-all"></span>
+        <span class="block w-6 h-px bg-charcoal transition-all"></span>
+        <span class="block w-6 h-px bg-charcoal transition-all"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-cream border-t border-sand px-6 py-4 flex flex-col gap-4 text-xs tracking-widest uppercase font-medium">
+      <a href="#top"       class="nav-link">Home</a>
+      <a href="#gallery"   class="nav-link">Shop All</a>
+      <a href="#pots"      class="nav-link">Shiba Pots</a>
+      <a href="#figurines" class="nav-link">Figurines</a>
+      <a href="#about"     class="nav-link">About</a>
+      <a href="#contact"   class="nav-link">Contact</a>
+    </div>
+  </header>
+
+  <!-- ─── HERO ────────────────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden bg-sand">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 items-center min-h-[520px]">
+
+      <!-- Text -->
+      <div class="py-16 md:py-24 z-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-moss mb-4 font-medium">Small-batch · Handmade · Singapore</p>
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-tight text-bark mb-6">
+          Handmade<br/>Shiba<br/>Ceramics
+        </h1>
+        <p class="text-stone text-lg font-light mb-10 tracking-wide">Cuteness for Your Home</p>
+        <a href="#gallery"
+           class="inline-block bg-moss text-cream text-xs tracking-[0.2em] uppercase font-medium px-8 py-4 hover:bg-bark transition-colors duration-300">
+          Shop Now
+        </a>
+      </div>
+
+      <!-- Hero image -->
+      <div class="hidden md:flex justify-end items-end h-full pt-8">
+        <div class="relative w-full max-w-sm h-[420px]">
+          <img src="assets/hero.jpg" alt="Tinyclayshiba handmade ceramics"
+               class="w-full h-full object-cover object-center"
+               onerror="this.parentElement.classList.add('hero-placeholder')" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative circle -->
+    <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-stone/20 pointer-events-none"></div>
+  </section>
+
+  <!-- ─── CATEGORY CARDS ───────────────────────────────────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <p class="text-xs tracking-[0.3em] uppercase text-stone text-center mb-12">Browse by Category</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#gallery" data-filter="bowls"     class="category-card group">
+        <div class="aspect-square bg-sand overflow-hidden mb-3">
+          <img src="assets/categories/bowls.jpg"     alt="Shiba Bowls"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+               onerror="this.classList.add('img-fallback')" />
+        </div>
+        <p class="text-xs tracking-[0.25em] uppercase font-medium">Shiba Bowls</p>
+        <p class="text-xs tracking-widest text-stone mt-0.5">View All</p>
+      </a>
+      <a href="#gallery" data-filter="spoonrests" class="category-card group">
+        <div class="aspect-square bg-sand overflow-hidden mb-3">
+          <img src="assets/categories/spoonrests.jpg" alt="Spoon Rests"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+               onerror="this.classList.add('img-fallback')" />
+        </div>
+        <p class="text-xs tracking-[0.25em] uppercase font-medium">Spoon Rests</p>
+        <p class="text-xs tracking-widest text-stone mt-0.5">View All</p>
+      </a>
+      <a href="#gallery" data-filter="figurines"  class="category-card group" id="figurines">
+        <div class="aspect-square bg-sand overflow-hidden mb-3">
+          <img src="assets/categories/figurines.jpg"  alt="Shiba Figurines"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+               onerror="this.classList.add('img-fallback')" />
+        </div>
+        <p class="text-xs tracking-[0.25em] uppercase font-medium">Shiba Figurines</p>
+        <p class="text-xs tracking-widest text-stone mt-0.5">View All</p>
+      </a>
+      <a href="#gallery" data-filter="giftsets"   class="category-card group">
+        <div class="aspect-square bg-sand overflow-hidden mb-3">
+          <img src="assets/categories/giftsets.jpg"   alt="Gift Sets"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+               onerror="this.classList.add('img-fallback')" />
+        </div>
+        <p class="text-xs tracking-[0.25em] uppercase font-medium">Gift Sets</p>
+        <p class="text-xs tracking-widest text-stone mt-0.5">View All</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ──────────────────────────────────────────────────────────── -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="border-t border-sand"></div>
+  </div>
+
+  <!-- ─── GALLERY ──────────────────────────────────────────────────────────── -->
+  <section id="gallery" class="max-w-6xl mx-auto px-6 py-20">
+
+    <!-- Section heading -->
+    <div class="text-center mb-12">
+      <p class="text-xs tracking-[0.3em] uppercase text-stone mb-3">Our Collection</p>
+      <h2 class="font-serif text-4xl font-light text-bark">Shop All</h2>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12" id="filterTabs">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="pots"      id="pots">Shiba Pots</button>
+      <button class="filter-btn" data-filter="figurines">Figurines</button>
+      <button class="filter-btn" data-filter="spoonrests">Spoon Rests</button>
+      <button class="filter-btn" data-filter="bowls">Bowls</button>
+      <button class="filter-btn" data-filter="giftsets">Gift Sets</button>
+    </div>
+
+    <!-- Gallery grid — populated by script.js -->
+    <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    </div>
+
+    <!-- Empty state (shown if no images found) -->
+    <div id="emptyState" class="hidden text-center py-20 text-stone">
+      <div class="text-5xl mb-4">🐕</div>
+      <p class="text-sm tracking-widest uppercase">Images coming soon</p>
+      <p class="text-xs mt-2 opacity-60">Add your photos to <code>assets/gallery/</code></p>
+    </div>
+
+  </section>
+
+  <!-- ─── ABOUT ────────────────────────────────────────────────────────────── -->
+  <section id="about" class="bg-sand">
+    <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
+      <div class="aspect-[4/3] bg-stone/20 overflow-hidden">
+        <img src="assets/about.jpg" alt="Stephanie making ceramics"
+             class="w-full h-full object-cover"
+             onerror="this.parentElement.classList.add('about-placeholder')" />
+      </div>
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase text-moss mb-4">The Story</p>
+        <h2 class="font-serif text-4xl font-light text-bark mb-6 leading-snug">
+          Made with love,<br/>one shiba at a time.
+        </h2>
+        <p class="text-stone leading-relaxed mb-4 font-light">
+          Hi, I'm Steph — the hands behind tinyclayshiba. Every piece is hand-sculpted and hand-painted in small batches, which means no two are exactly alike.
+        </p>
+        <p class="text-stone leading-relaxed font-light">
+          My little shibes are made to bring a smile to your everyday rituals — your morning tea, your windowsill, your desk.
+        </p>
+        <div class="mt-8 flex gap-6 text-center">
+          <div>
+            <p class="font-serif text-3xl text-bark">100%</p>
+            <p class="text-xs tracking-widest uppercase text-stone mt-1">Handmade</p>
+          </div>
+          <div class="border-l border-stone/30"></div>
+          <div>
+            <p class="font-serif text-3xl text-bark">SG</p>
+            <p class="text-xs tracking-widest uppercase text-stone mt-1">Based</p>
+          </div>
+          <div class="border-l border-stone/30"></div>
+          <div>
+            <p class="font-serif text-3xl text-bark">∞</p>
+            <p class="text-xs tracking-widest uppercase text-stone mt-1">Cuteness</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INSTAGRAM FEED ───────────────────────────────────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-[0.3em] uppercase text-stone mb-2">Follow Along</p>
+      <h2 class="font-serif text-3xl font-light text-bark">Instagram Feed</h2>
+      <a href="https://www.instagram.com/tinyclayshiba" target="_blank" rel="noopener"
+         class="text-xs tracking-widest text-moss mt-1 inline-block hover:text-bark transition-colors">
+        @tinyclayshiba
+      </a>
+    </div>
+
+    <!-- Instagram grid: pulls same gallery images as a preview strip -->
+    <div id="instaGrid" class="grid grid-cols-3 md:grid-cols-6 gap-2">
+    </div>
+  </section>
+
+  <!-- ─── CONTACT / FOOTER ─────────────────────────────────────────────────── -->
+  <footer id="contact" class="bg-charcoal text-cream">
+    <div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/logo.png" alt="tinyclayshiba"
+               class="h-10 w-10 object-contain brightness-0 invert"
+               onerror="this.style.display='none'" />
+          <span class="font-serif text-lg tracking-wide">tinyclayshiba</span>
+        </div>
+        <p class="text-stone text-sm font-light leading-relaxed">
+          Handmade shiba-themed ceramics, crafted with love in Singapore.
+        </p>
+      </div>
+
+      <!-- Shop links -->
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-stone mb-4">Shop</p>
+        <ul class="space-y-2 text-sm font-light">
+          <li><a href="#gallery"   class="hover:text-stone transition-colors">All Products</a></li>
+          <li><a href="#pots"      class="hover:text-stone transition-colors">Shiba Pots</a></li>
+          <li><a href="#figurines" class="hover:text-stone transition-colors">Figurines</a></li>
+          <li><a href="#gallery"   class="hover:text-stone transition-colors">Spoon Rests</a></li>
+          <li><a href="#gallery"   class="hover:text-stone transition-colors">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="text-xs tracking-[0.25em] uppercase text-stone mb-4">Contact</p>
+        <p class="text-sm font-light text-stone mb-1">info@tinyclayshiba.com</p>
+        <p class="text-sm font-light text-stone mb-6">@tinyclayshiba</p>
+
+        <a href="https://www.instagram.com/tinyclayshiba" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-moss text-cream text-xs tracking-[0.15em] uppercase font-medium px-6 py-3 hover:bg-bark transition-colors duration-300">
+          <!-- Instagram icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+          </svg>
+          DM on Instagram to Order
+        </a>
+
+        <!-- Social icons row -->
+        <div class="flex gap-4 mt-6">
+          <a href="https://www.instagram.com/tinyclayshiba" target="_blank" rel="noopener"
+             aria-label="Instagram" class="text-stone hover:text-cream transition-colors">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="TikTok" class="text-stone hover:text-cream transition-colors">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 text-center py-6 text-xs text-stone/60">
+      © <span id="year"></span> tinyclayshiba · All rights reserved · Handmade with 🐾
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

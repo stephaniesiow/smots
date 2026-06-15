@@ -1,0 +1,241 @@
+/* ── Base ───────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Navigation ─────────────────────────────────────────────── */
+.nav-link {
+  color: #6B5B45;
+  letter-spacing: 0.15em;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #5C6B4A;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #5C6B4A;
+}
+
+/* ── Filter buttons ─────────────────────────────────────────── */
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid #C4B8A4;
+  color: #6B5B45;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.filter-btn:hover {
+  background: #E8DFD0;
+}
+
+.filter-btn.active {
+  background: #5C6B4A;
+  color: #F5F0E8;
+  border-color: #5C6B4A;
+}
+
+/* ── Gallery items ──────────────────────────────────────────── */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  background: #E8DFD0;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 44, 44, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.gallery-item .overlay span {
+  color: #F5F0E8;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* placeholder shown when an image fails to load */
+.gallery-item.no-image {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #C4B8A4;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Category cards ─────────────────────────────────────────── */
+.category-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.img-fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #E8DFD0;
+  /* hide broken-image icon */
+  color: transparent;
+}
+
+/* ── Hero image placeholder ─────────────────────────────────── */
+.hero-placeholder {
+  background: #E8DFD0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.hero-placeholder::after {
+  content: '🐕';
+}
+
+/* ── About image placeholder ────────────────────────────────── */
+.about-placeholder {
+  background: #E8DFD0;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.about-placeholder::after {
+  content: '🏺';
+}
+
+/* ── Instagram grid ─────────────────────────────────────────── */
+#instaGrid .insta-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #E8DFD0;
+  position: relative;
+}
+
+#instaGrid .insta-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+#instaGrid .insta-thumb:hover img {
+  transform: scale(1.08);
+}
+
+/* ── Lightbox ───────────────────────────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+#lightbox.open {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+#lightbox .close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#lightbox .close-btn:hover {
+  opacity: 1;
+}
+
+/* ── Fade-in animation ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.gallery-item {
+  animation: fadeUp 0.4s ease both;
+}
+
+/* ── Responsive tweaks ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  #filterTabs {
+    gap: 0.4rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.6rem;
+  }
+}
