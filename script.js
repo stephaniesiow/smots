@@ -80,7 +80,7 @@ function renderGallery(filter) {
       <div class="overlay"><span>View</span></div>
       <noscript><img src="${img.src}" alt="${img.alt}" /></noscript>
     `;
-    item.addEventListener('click', () => openLightbox(img.src, img.alt));
+    item.addEventListener('click', () => openLightbox(idx, visible));
     galleryGrid.appendChild(item);
   });
 }
@@ -132,28 +132,69 @@ categoryCards.forEach(card => {
 const lightbox = document.createElement('div');
 lightbox.id = 'lightbox';
 lightbox.innerHTML = `
-  <button class="close-btn" aria-label="Close">&times;</button>
-  <img src="" alt="" />
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-prev"  aria-label="Previous">&#8249;</button>
+  <button class="lb-next"  aria-label="Next">&#8250;</button>
+  <div class="lb-img-wrap">
+    <img src="" alt="" />
+  </div>
+  <p class="lb-counter"></p>
 `;
 document.body.appendChild(lightbox);
 
-const lightboxImg = lightbox.querySelector('img');
+const lightboxImg     = lightbox.querySelector('img');
+const lightboxCounter = lightbox.querySelector('.lb-counter');
 
-function openLightbox(src, alt) {
-  lightboxImg.src = src;
-  lightboxImg.alt = alt;
+// tracks the *filtered* list shown when the lightbox was opened
+let lbList  = [];
+let lbIndex = 0;
+
+function openLightbox(index, list) {
+  lbList  = list;
+  lbIndex = index;
+  showLbImage();
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
+
+function showLbImage() {
+  const item = lbList[lbIndex];
+  lightboxImg.classList.remove('lb-loaded');
+  lightboxImg.src = item.src;
+  lightboxImg.alt = item.alt;
+  lightboxImg.onload = () => lightboxImg.classList.add('lb-loaded');
+  lightboxCounter.textContent = `${lbIndex + 1} / ${lbList.length}`;
+  lightbox.querySelector('.lb-prev').style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+  lightbox.querySelector('.lb-next').style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+}
+
+function lbPrev() { lbIndex = (lbIndex - 1 + lbList.length) % lbList.length; showLbImage(); }
+function lbNext() { lbIndex = (lbIndex + 1)                 % lbList.length; showLbImage(); }
 
 function closeLightbox() {
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
 }
 
-lightbox.querySelector('.close-btn').addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+lightbox.querySelector('.lb-close').addEventListener('click', closeLightbox);
+lightbox.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+lightbox.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
+lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target.classList.contains('lb-img-wrap')) closeLightbox(); });
+
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+});
+
+// swipe support for mobile
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) dx < 0 ? lbNext() : lbPrev();
+});
 
 // ── MOBILE MENU ───────────────────────────────────────────────
 menuBtn.addEventListener('click', () => {
