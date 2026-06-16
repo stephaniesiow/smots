@@ -230,5 +230,6 @@ sections.forEach(id => {
 });
 
 // ── INIT ──────────────────────────────────────────────────────
+document.body.style.overflow = ''; // safety: ensure scroll is never locked on load
 renderGallery('all');
 renderInstaGrid();
